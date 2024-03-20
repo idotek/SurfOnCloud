@@ -14,3 +14,5 @@ resource "aws_vpc" "VPC-INTERNAL" {
   }
 }
 
+### VPC PEERING pour interco
+

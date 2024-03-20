@@ -30,6 +30,16 @@ resource "aws_subnet" "Web-3" {
   }
 }
 
+resource "aws_subnet" "RDS" {
+  vpc_id                  = aws_vpc.VPC-PROD.id
+  cidr_block              = "10.20.4.0/24"
+  availability_zone       = "us-east-1a"
+  map_public_ip_on_launch = true
+  tags = {
+    Name = "RDS-Subnet"
+  }
+}
+
 resource "aws_internet_gateway" "PROD-gw" {
   vpc_id = aws_vpc.VPC-PROD.id
 
@@ -132,7 +142,7 @@ resource "aws_route_table" "INTERNAL-Route" {
   }
 }
 
-resource "aws_main_route_table_association" "RouteAndVPC" {
+resource "aws_main_route_table_association" "RouteAndVPC-Internal" {
   vpc_id         = aws_vpc.VPC-INTERNAL.id
   route_table_id = aws_route_table.INTERNAL-Route.id
 }
