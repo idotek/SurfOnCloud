@@ -29,11 +29,6 @@ resource "aws_elb" "LB-Prod" {
 }
 
 
-
-
-
-
-
 resource "aws_elb" "LB-Internal" {
   name    = "LB-Internal"
   subnets = [aws_subnet.WebDev-1.id, aws_subnet.WebDev-2.id, aws_subnet.Web-Dev3.id]
