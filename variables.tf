@@ -20,3 +20,9 @@ variable "token" {
   type        = string
   sensitive   = true
 }
+
+variable "vpn_ip" {
+  description = "VPN Ip address"
+  type        = string
+  default     = "0.0.0.0"
+}
