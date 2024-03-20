@@ -20,7 +20,7 @@ resource "aws_vpc_peering_connection" "vpc_peer" {
   peer_vpc_id   = aws_vpc.vpc_prod.id
   vpc_id        = aws_vpc.vpc_internal.id
   auto_accept = true
-  
+
   tags = {
     Name = "VPC Peering entre Internal et Prod"
   }

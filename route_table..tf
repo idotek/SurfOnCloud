@@ -56,14 +56,31 @@ resource "aws_route_table" "peering_internal_route_table" {
 
   route {
     cidr_block = "10.20.0.0/16"
-    gateway_id = "local"
+    gateway_id = "pcx-0194d8689d2549957"
   }
   tags = {
     Name = "Peering Internal Route Table"
   }
 }
-resource "aws_route" "peer" {
+resource "aws_route" "peer_internal" {
   route_table_id            = aws_route_table.peering_internal_route_table.id
   destination_cidr_block    = "10.20.0.0/16"
+  vpc_peering_connection_id = "pcx-0194d8689d2549957"
+}
+#Create Route between Prod and Internal
+resource "aws_route_table" "peering_prod_route_table" {
+  vpc_id = aws_vpc.vpc_prod.id
+
+  route {
+    cidr_block = "10.10.0.0/16"
+    gateway_id = "pcx-0194d8689d2549957"
+  }
+  tags = {
+    Name = "Peering Prod Route Table"
+  }
+}
+resource "aws_route" "peer_prod" {
+  route_table_id            = aws_route_table.peering_prod_route_table.id
+  destination_cidr_block    = "10.10.0.0/16"
   vpc_peering_connection_id = "pcx-0194d8689d2549957"
 }
