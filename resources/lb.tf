@@ -1,6 +1,6 @@
 resource "aws_elb" "TF-LB" {
   name    = "TF-LB"
-  subnets = [aws_subnet.AZ-A.id, aws_subnet.AZ-B.id, aws_subnet.AZ-C.id]
+  subnets = [aws_subnet.Web-1.id, aws_subnet.Web-2.id, aws_subnet.Web-3.id]
   security_groups = [aws_security_group.LbNSG.id]
   listener {
     instance_port     = 80
@@ -17,7 +17,7 @@ resource "aws_elb" "TF-LB" {
     interval            = 30
   }
 
-  instances                   = [aws_instance.AC-A.id, aws_instance.AC-B.id, aws_instance.AC-C.id]
+  instances                   = [aws_instance.Web1.id, aws_instance.Web2.id, aws_instance.Web3.id]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true

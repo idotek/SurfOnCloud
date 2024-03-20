@@ -21,7 +21,7 @@ resource "aws_security_group" "LbNSG" {
 }
 
 
-resource "aws_security_group" "AdminNSG" {
+resource "aws_security_group" "InternalNSG" {
   name        = "Admin NSG"
   description = "Admin NSG"
   vpc_id      = aws_vpc.TF-VPC.id
@@ -29,6 +29,13 @@ resource "aws_security_group" "AdminNSG" {
     description = "SSH"
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -52,7 +59,7 @@ resource "aws_security_group" "WebNSG" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["10.10.0.0/24"]
+    cidr_blocks = ["10.10.4.0/24"]
   }
 
   ingress {
