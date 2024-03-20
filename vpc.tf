@@ -1,4 +1,4 @@
-# Création du VPC Prod
+# Create VPC prod
 resource "aws_vpc" "vpc_prod" {
   cidr_block = "10.20.0.0/16"
 
@@ -7,7 +7,7 @@ resource "aws_vpc" "vpc_prod" {
   }
 }
 
-# Création du VPC Internal
+# Create VPC internal
 resource "aws_vpc" "vpc_internal" {
   cidr_block = "10.10.0.0/16"
 

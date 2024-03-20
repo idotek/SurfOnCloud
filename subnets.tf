@@ -7,7 +7,7 @@ resource "aws_subnet" "subnet_01_prod" {
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
   tags = {
-    Name = "Subnet Web 01"
+    Name = "Subnet prod 01"
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_subnet" "subnet_02_prod" {
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
   tags = {
-    Name = "Subnet Web 02"
+    Name = "Subnet prod 02"
   }
 }
 
@@ -27,7 +27,7 @@ resource "aws_subnet" "subnet_03_prod" {
   availability_zone       = "us-east-1c"
   map_public_ip_on_launch = true
   tags = {
-    Name = "Subnet Web 03"
+    Name = "Subnet prod 03"
   }
 }
 

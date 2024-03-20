@@ -33,7 +33,7 @@ resource "aws_elb" "lb_prod" {
 resource "aws_elb" "lb_internal" {
   name    = "LB-Internal"
   subnets = [aws_subnet.subnet_01_internal.id, aws_subnet.subnet_02_internal.id, aws_subnet.subnet_03_internal.id]
-  security_groups = [aws_security_group.lb_internal_admin_nsg.id]
+  security_groups = [aws_security_group.lb_internal_nsg.id]
   listener {
     instance_port     = 80
     instance_protocol = "http"
