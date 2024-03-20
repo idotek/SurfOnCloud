@@ -1,5 +1,5 @@
 ### PROD EC2
-
+#Création des Serveurs Web
 resource "aws_instance" "Web1" {
   instance_type          = "t2.micro"
   ami                    = "ami-080e1f13689e07408"
@@ -35,7 +35,7 @@ resource "aws_instance" "Web3" {
 
 ### INTERNAL EC2
 
-
+#Création de la machine Admin faisant office de Bastion
 resource "aws_instance" "AdminBastion" {
   instance_type          = "t2.micro"
   ami                    = "ami-080e1f13689e07408"
@@ -46,7 +46,7 @@ resource "aws_instance" "AdminBastion" {
     Name = "AdminBastion"
   }
 }
-
+#Création des Serveur pour les applications mobile
 resource "aws_instance" "WebDev-1" {
   instance_type          = "t2.micro"
   ami                    = "ami-080e1f13689e07408"
