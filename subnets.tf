@@ -31,17 +31,6 @@ resource "aws_subnet" "subnet_03_prod" {
   }
 }
 
-# Create database subnet
-resource "aws_subnet" "subnet_04_prod" {
-  vpc_id                  = aws_vpc.vpc_prod.id
-  cidr_block              = "10.20.4.0/24"
-  availability_zone       = "us-east-1d"
-  map_public_ip_on_launch = true
-  tags = {
-    Name = "Subnet database"
-  }
-}
-
 
 ### Internal ###
 

@@ -13,12 +13,11 @@ region     = "us-east-1"
 access_key = ""
 secret_key = ""
 token      = ""
-db_name    = "" # optional
-db_user    = "" # optional
-db_pass    = "" # optional
 ```
 
-Then apply your `secrets.tfvars`
+## Install
+
+Then apply your terraform with your `-var-file="secrets.tfvars"`
 
 ```shell
 terraform apply -var-file="secrets.tfvars"

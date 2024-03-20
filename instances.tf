@@ -41,7 +41,7 @@ resource "aws_instance" "server_01_internal" {
   ami                    = data.aws_ami.debian_12.id
   subnet_id              = aws_subnet.subnet_01_internal.id
   vpc_security_group_ids = [aws_security_group.internal_admin_nsg.id]
-  key_name               = "Terraform_Cle_Web"
+  key_name               = aws_key_pair.gen_internal_servers_public_key.key_name
   tags = {
     Name = "Internal server 01"
   }
@@ -52,7 +52,7 @@ resource "aws_instance" "server_02_internal" {
   ami                    = data.aws_ami.debian_12.id
   subnet_id              = aws_subnet.subnet_02_internal.id
   vpc_security_group_ids = [aws_security_group.internal_admin_nsg.id]
-  key_name               = "Terraform_Cle_Web"
+  key_name               = aws_key_pair.gen_internal_servers_public_key.key_name
   tags = {
     Name = "Internal server 02"
   }
@@ -63,7 +63,7 @@ resource "aws_instance" "server_03_internal" {
   ami                    = data.aws_ami.debian_12.id
   subnet_id              = aws_subnet.subnet_03_internal.id
   vpc_security_group_ids = [aws_security_group.internal_admin_nsg.id]
-  key_name               = "Terraform_Cle_Web"
+  key_name               = aws_key_pair.gen_internal_servers_public_key.key_name
   tags = {
     Name = "Internal server 03"
   }
