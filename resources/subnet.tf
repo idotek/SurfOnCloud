@@ -1,5 +1,5 @@
 ## VPC PROD
-
+#Création des subnets des serveurs web
 resource "aws_subnet" "Web-1" {
   vpc_id                  = aws_vpc.VPC-PROD.id
   cidr_block              = "10.10.1.0/24"
@@ -29,7 +29,7 @@ resource "aws_subnet" "Web-3" {
     Name = "AZ-C"
   }
 }
-
+#Création du subnet de la base de données
 resource "aws_subnet" "RDS" {
   vpc_id                  = aws_vpc.VPC-PROD.id
   cidr_block              = "10.20.4.0/24"
@@ -39,7 +39,7 @@ resource "aws_subnet" "RDS" {
     Name = "RDS-Subnet"
   }
 }
-
+#Création de la passerelle internet pour le VPC Prod
 resource "aws_internet_gateway" "PROD-gw" {
   vpc_id = aws_vpc.VPC-PROD.id
 
@@ -47,7 +47,7 @@ resource "aws_internet_gateway" "PROD-gw" {
     Name = "PROD-GW"
   }
 }
-
+#Création de la table de routage du VPC Prod
 resource "aws_route_table" "PROD-Route" {
   vpc_id = aws_vpc.VPC-PROD.id
 
@@ -64,7 +64,7 @@ resource "aws_route_table" "PROD-Route" {
     Name = "PROD-Routing"
   }
 }
-
+#Association de la table de routage au VPC Prod
 resource "aws_main_route_table_association" "RouteAndVPC" {
   vpc_id         = aws_vpc.VPC-PROD.id
   route_table_id = aws_route_table.PROD-Route.id
@@ -74,7 +74,7 @@ resource "aws_main_route_table_association" "RouteAndVPC" {
 #### VPC INTERNAL
 
 
-
+#Création des subnets pour les application mobile
 resource "aws_subnet" "WebDev-1" {
   vpc_id                  = aws_vpc.VPC-INTERNAL.id
   cidr_block              = "10.10.1.0/24"
@@ -105,7 +105,7 @@ resource "aws_subnet" "WebDev-3" {
   }
 }
 
-
+#Création du subnet pour la machine admin
 resource "aws_subnet" "AdminBastion" {
   vpc_id                  = aws_vpc.VPC-INTERNAL.id
   cidr_block              = "10.10.4.0/24"
@@ -116,7 +116,7 @@ resource "aws_subnet" "AdminBastion" {
   }
 }
 
-
+#Création de la passerelle internet pour le VPC Internal
 resource "aws_internet_gateway" "INTERNAL-gw" {
   vpc_id = aws_vpc.VPC-INTERNAL.id
 
@@ -141,7 +141,7 @@ resource "aws_route_table" "INTERNAL-Route" {
     Name = "INTERNAL-Routing"
   }
 }
-
+#Association de la table de routage au VPC Internal
 resource "aws_main_route_table_association" "RouteAndVPC-Internal" {
   vpc_id         = aws_vpc.VPC-INTERNAL.id
   route_table_id = aws_route_table.INTERNAL-Route.id
