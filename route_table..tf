@@ -50,3 +50,15 @@ resource "aws_main_route_table_association" "internal_route_table_association" {
   vpc_id         = aws_vpc.vpc_internal.id
   route_table_id = aws_route_table.internal_route_table.id
 }
+#Create Route between Internal and Prod
+resource "aws_route_table" "peering_internal_route_table" {
+  vpc_id = aws_vpc.vpc_internal.id
+
+  route {
+    cidr_block = "10.20.0.0/16"
+    gateway_id = "local"
+  }
+  tags = {
+    Name = "Peering Internal Route Table"
+  }
+}
