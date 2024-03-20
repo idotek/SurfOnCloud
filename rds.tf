@@ -1,4 +1,4 @@
-#Création de la base de données
+# Create Database
 resource "aws_db_instance" "db_prod" {
   allocated_storage    = 10
   db_name              = var.db_name
@@ -9,5 +9,5 @@ resource "aws_db_instance" "db_prod" {
   password             = var.db_pass
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
-  db_subnet_group_name = aws_subnet.RDS.id
+  db_subnet_group_name = aws_subnet.subnet_04_prod.id
 }

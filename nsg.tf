@@ -1,8 +1,8 @@
 # Internal load balancer security group
-resource "aws_security_group" "lb_internal_nsg" {
-  name        = "Lb NSG"
-  description = "Lb NSG"
-  vpc_id      = aws_vpc.VPC-INTERNAL.id
+resource "aws_security_group" "lb_internal_admin_nsg" {
+  name        = "Internal lb NSG"
+  description = "Internal lb NSG"
+  vpc_id      = aws_vpc.vpc_internal.id
   ingress {
     description = "All"
     from_port   = 0
@@ -21,9 +21,9 @@ resource "aws_security_group" "lb_internal_nsg" {
 
 # Prod load balancer security group
 resource "aws_security_group" "lb_prod_nsg" {
-  name        = "Lb NSG"
-  description = "Lb NSG"
-  vpc_id      = aws_vpc.VPC-PROD.id
+  name        = "Prod lb NSG"
+  description = "Prod lb NSG"
+  vpc_id      = aws_vpc.vpc_prod.id
   ingress {
     description = "All"
     from_port   = 0
@@ -41,10 +41,10 @@ resource "aws_security_group" "lb_prod_nsg" {
 }
 
 # Internal resources security group
-resource "aws_security_group" "InternalNSG" {
+resource "aws_security_group" "internal_admin_nsg" {
   name        = "Admin NSG"
   description = "Admin NSG"
-  vpc_id      = aws_vpc.VPC-INTERNAL.id
+  vpc_id      = aws_vpc.vpc_internal.id
   ingress {
     description = "SSH"
     from_port   = 22
@@ -70,10 +70,10 @@ resource "aws_security_group" "InternalNSG" {
 }
 
 # Prod servers security group
-resource "aws_security_group" "WebNSG" {
+resource "aws_security_group" "prod_servers_nsg" {
   name        = "Web NSG"
   description = "Web NSG"
-  vpc_id      = aws_vpc.VPC-PROD.id
+  vpc_id      = aws_vpc.vpc_prod.id
 
   ingress {
     description = "SSH"

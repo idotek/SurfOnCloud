@@ -1,7 +1,7 @@
 # Prod load balancer
 resource "aws_elb" "lb_prod" {
   name    = "LB-Prod"
-  subnets = [aws_subnet.Web-1.id, aws_subnet.Web-2.id, aws_subnet.Web-3.id]
+  subnets = [aws_subnet.subnet_01_prod.id, aws_subnet.subnet_02_prod.id, aws_subnet.subnet_03_prod.id]
   security_groups = [aws_security_group.lb_prod_nsg.id]
   listener {
     instance_port     = 80
@@ -18,7 +18,7 @@ resource "aws_elb" "lb_prod" {
     interval            = 30
   }
 
-  instances                   = [aws_instance.Web1.id, aws_instance.Web2.id, aws_instance.Web3.id]
+  instances                   = [aws_instance.web_01_prod.id, aws_instance.web_02_prod.id, aws_instance.web_03_prod.id]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
@@ -32,8 +32,8 @@ resource "aws_elb" "lb_prod" {
 # Internal load balancer
 resource "aws_elb" "lb_internal" {
   name    = "LB-Internal"
-  subnets = [aws_subnet.WebDev-1.id, aws_subnet.WebDev-2.id, aws_subnet.WebDev-3.id]
-  security_groups = [aws_security_group.lb_internal_nsg.id]
+  subnets = [aws_subnet.subnet_01_internal.id, aws_subnet.subnet_02_internal.id, aws_subnet.subnet_03_internal.id]
+  security_groups = [aws_security_group.lb_internal_admin_nsg.id]
   listener {
     instance_port     = 80
     instance_protocol = "http"
@@ -49,7 +49,7 @@ resource "aws_elb" "lb_internal" {
     interval            = 30
   }
 
-  instances                   = [aws_instance.WebDev-1.id, aws_instance.WebDev-2.id, aws_instance.WebDev-3.id]
+  instances                   = [aws_instance.server_01_internal.id, aws_instance.server_02_internal.id, aws_instance.server_03_internal.id]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
