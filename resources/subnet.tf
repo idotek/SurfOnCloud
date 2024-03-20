@@ -105,8 +105,8 @@ resource "aws_subnet" "WebDev-3" {
   }
 }
 
-#Création du subnet pour la machine admin
-resource "aws_subnet" "AdminBastion" {
+
+resource "aws_subnet" "az_admin_bastion" {
   vpc_id                  = aws_vpc.VPC-INTERNAL.id
   cidr_block              = "10.10.4.0/24"
   availability_zone       = "us-east-1d"

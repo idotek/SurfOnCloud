@@ -1,8 +1,8 @@
-#Création du Load Balancer pour les serveurs web
-resource "aws_elb" "LB-Prod" {
+# Prod load balancer
+resource "aws_elb" "lb_prod" {
   name    = "LB-Prod"
   subnets = [aws_subnet.Web-1.id, aws_subnet.Web-2.id, aws_subnet.Web-3.id]
-  security_groups = [aws_security_group.LbNSG.id]
+  security_groups = [aws_security_group.lb_prod_nsg.id]
   listener {
     instance_port     = 80
     instance_protocol = "http"
@@ -29,11 +29,11 @@ resource "aws_elb" "LB-Prod" {
   }
 }
 
-#Création du Load Balancer pour les applications mobile
-resource "aws_elb" "LB-Internal" {
+# Internal load balancer
+resource "aws_elb" "lb_internal" {
   name    = "LB-Internal"
-  subnets = [aws_subnet.WebDev-1.id, aws_subnet.WebDev-2.id, aws_subnet.Web-Dev3.id]
-  security_groups = [aws_security_group.LbNSG.id]
+  subnets = [aws_subnet.WebDev-1.id, aws_subnet.WebDev-2.id, aws_subnet.WebDev-3.id]
+  security_groups = [aws_security_group.lb_internal_nsg.id]
   listener {
     instance_port     = 80
     instance_protocol = "http"

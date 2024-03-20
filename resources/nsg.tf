@@ -1,8 +1,8 @@
-#Création du groupe de sécurité pour les Load Balancer
-resource "aws_security_group" "LbNSG" {
+# Internal load balancer security group
+resource "aws_security_group" "lb_internal_nsg" {
   name        = "Lb NSG"
   description = "Lb NSG"
-  vpc_id      = aws_vpc.TF-VPC.id
+  vpc_id      = aws_vpc.VPC-INTERNAL.id
   ingress {
     description = "All"
     from_port   = 0
@@ -17,14 +17,34 @@ resource "aws_security_group" "LbNSG" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-
 }
 
-#Création du groupe de sécurité pour la machine Admin
+# Prod load balancer security group
+resource "aws_security_group" "lb_prod_nsg" {
+  name        = "Lb NSG"
+  description = "Lb NSG"
+  vpc_id      = aws_vpc.VPC-PROD.id
+  ingress {
+    description = "All"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+}
+
+# Internal resources security group
 resource "aws_security_group" "InternalNSG" {
   name        = "Admin NSG"
   description = "Admin NSG"
-  vpc_id      = aws_vpc.TF-VPC.id
+  vpc_id      = aws_vpc.VPC-INTERNAL.id
   ingress {
     description = "SSH"
     from_port   = 22
@@ -48,11 +68,12 @@ resource "aws_security_group" "InternalNSG" {
   }
 
 }
-#Création du groupe de sécurité pour les serveurs web
+
+# Prod servers security group
 resource "aws_security_group" "WebNSG" {
   name        = "Web NSG"
   description = "Web NSG"
-  vpc_id      = aws_vpc.TF-VPC.id
+  vpc_id      = aws_vpc.VPC-PROD.id
 
   ingress {
     description = "SSH"

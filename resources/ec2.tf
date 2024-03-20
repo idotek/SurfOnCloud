@@ -39,7 +39,7 @@ resource "aws_instance" "Web3" {
 resource "aws_instance" "AdminBastion" {
   instance_type          = "t2.micro"
   ami                    = "ami-080e1f13689e07408"
-  subnet_id              = aws_subnet.AZ-Admin.id
+  subnet_id              = aws_subnet.az_admin_bastion.id
   vpc_security_group_ids = [aws_security_group.InternalNSG.id]
   key_name               = "Terraform_Cle_Admin"
   tags = {
@@ -50,7 +50,7 @@ resource "aws_instance" "AdminBastion" {
 resource "aws_instance" "WebDev-1" {
   instance_type          = "t2.micro"
   ami                    = "ami-080e1f13689e07408"
-  subnet_id              = aws_subnet.WebDev-1
+  subnet_id              = aws_subnet.WebDev-1.id
   vpc_security_group_ids = [aws_security_group.InternalNSG.id]
   key_name               = "Terraform_Cle_Web"
   tags = {
