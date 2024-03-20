@@ -1,4 +1,4 @@
-
+#Création du groupe de sécurité pour les Load Balancer
 resource "aws_security_group" "LbNSG" {
   name        = "Lb NSG"
   description = "Lb NSG"
@@ -20,7 +20,7 @@ resource "aws_security_group" "LbNSG" {
 
 }
 
-
+#Création du groupe de sécurité pour la machine Admin
 resource "aws_security_group" "InternalNSG" {
   name        = "Admin NSG"
   description = "Admin NSG"
@@ -48,7 +48,7 @@ resource "aws_security_group" "InternalNSG" {
   }
 
 }
-
+#Création du groupe de sécurité pour les serveurs web
 resource "aws_security_group" "WebNSG" {
   name        = "Web NSG"
   description = "Web NSG"
