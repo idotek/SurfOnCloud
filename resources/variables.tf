@@ -1,3 +1,4 @@
+#Création des variables pour se connecter à l'AWS
 variable "region" {
   description = "Aws region"
   type        = string
@@ -22,7 +23,7 @@ variable "token" {
 }
 
 
-
+#Création des variables pour la base de données
 variable "db_name" {
   description = "rds db name"
   type = string
