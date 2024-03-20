@@ -1,9 +1,10 @@
+#Import de l'algorithme RSA permettant de générer les clés
 resource "tls_private_key" "key_pair_admin" {
   algorithm = "RSA"
   rsa_bits  = 4096
 
 }
-
+#Création de la paire de clé Admin pour la machine Admin
 resource "aws_key_pair" "TerraformKeyAdmin" {
   key_name   = "Terraform_Cle_Admin"
   public_key = tls_private_key.key_pair_admin.public_key_openssh
@@ -17,7 +18,7 @@ resource "local_sensitive_file" "TerraformPrivateKeyAdmin" {
 }
 
 
-
+#Création de la paire de clé pour les machines Web
 resource "tls_private_key" "key_pair_web" {
   algorithm = "RSA"
   rsa_bits  = 4096
