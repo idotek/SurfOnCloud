@@ -1,3 +1,4 @@
+#Création de la base de données
 resource "aws_db_instance" "db_prod" {
   allocated_storage    = 10
   db_name              = var.db_name
