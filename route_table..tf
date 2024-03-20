@@ -62,3 +62,8 @@ resource "aws_route_table" "peering_internal_route_table" {
     Name = "Peering Internal Route Table"
   }
 }
+resource "aws_route" "peer" {
+  route_table_id            = aws_route_table.peering_internal_route_table.id
+  destination_cidr_block    = "10.20.0.0/16"
+  vpc_peering_connection_id = "pcx-0194d8689d2549957"
+}
