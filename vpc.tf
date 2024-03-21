@@ -18,8 +18,8 @@ resource "aws_vpc" "vpc_internal" {
 
 # Create VPC Peering
 resource "aws_vpc_peering_connection" "vpc_peer" {
-  vpc_id        = aws_vpc.vpc_internal.id
-  peer_vpc_id   = aws_vpc.vpc_prod.id
+  vpc_id      = aws_vpc.vpc_internal.id
+  peer_vpc_id = aws_vpc.vpc_prod.id
   auto_accept = true
 
   tags = {

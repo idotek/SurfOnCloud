@@ -65,6 +65,7 @@ resource "aws_subnet" "subnet_03_internal" {
   }
 }
 
+# Create admin subnet
 resource "aws_subnet" "subnet_04_internal" {
   vpc_id                  = aws_vpc.vpc_internal.id
   cidr_block              = "10.10.4.0/24"

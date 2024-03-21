@@ -69,7 +69,7 @@ resource "aws_instance" "server_03_internal" {
   }
 }
 
-# Création de la machine Admin faisant office de Bastion
+# Create Admin Machine serving as a Bastion
 resource "aws_instance" "server_04_internal" {
   instance_type          = data.aws_ec2_instance_type.default_instance_type.instance_type
   ami                    = data.aws_ami.debian_12.id

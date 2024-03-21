@@ -15,4 +15,3 @@ resource "aws_internet_gateway" "internal_igw" {
     Name = "INTERNAL-GW"
   }
 }
-#Creation of the Virtual private gateway for the Internal VPC

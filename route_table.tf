@@ -15,7 +15,7 @@ resource "aws_route_table" "prod_route_table" {
   }
 
   route {
-    cidr_block = aws_vpc.vpc_internal.cidr_block
+    cidr_block                = aws_vpc.vpc_internal.cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peer.id
   }
 
@@ -48,7 +48,7 @@ resource "aws_route_table" "internal_route_table" {
   }
 
   route {
-    cidr_block = aws_vpc.vpc_prod.cidr_block
+    cidr_block                = aws_vpc.vpc_prod.cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peer.id
   }
 

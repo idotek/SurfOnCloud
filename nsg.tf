@@ -26,13 +26,13 @@ resource "aws_security_group" "lb_prod_nsg" {
   name        = "Prod lb nsg"
   description = "Prod lb nsg"
   vpc_id      = aws_vpc.vpc_prod.id
-  
+
   ingress {
-    description = "HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    description      = "HTTP"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
 
@@ -56,8 +56,7 @@ resource "aws_security_group" "internal_admin_nsg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    cidr_blocks = ["${var.vpn_ip}/32"]
   }
 
   egress {
@@ -88,8 +87,7 @@ resource "aws_security_group" "prod_servers_nsg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    cidr_blocks = ["10.20.0.0/16"]
   }
 
   egress {

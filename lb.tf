@@ -1,7 +1,7 @@
 # Prod load balancer
 resource "aws_elb" "lb_prod" {
-  name    = "LB-Prod"
-  subnets = [aws_subnet.subnet_01_prod.id, aws_subnet.subnet_02_prod.id, aws_subnet.subnet_03_prod.id]
+  name            = "LB-Prod"
+  subnets         = [aws_subnet.subnet_01_prod.id, aws_subnet.subnet_02_prod.id, aws_subnet.subnet_03_prod.id]
   security_groups = [aws_security_group.lb_prod_nsg.id]
   listener {
     instance_port     = 80
@@ -31,8 +31,8 @@ resource "aws_elb" "lb_prod" {
 
 # Internal load balancer
 resource "aws_elb" "lb_internal" {
-  name    = "LB-Internal"
-  subnets = [aws_subnet.subnet_01_internal.id, aws_subnet.subnet_02_internal.id, aws_subnet.subnet_03_internal.id]
+  name            = "LB-Internal"
+  subnets         = [aws_subnet.subnet_01_internal.id, aws_subnet.subnet_02_internal.id, aws_subnet.subnet_03_internal.id]
   security_groups = [aws_security_group.lb_internal_nsg.id]
   listener {
     instance_port     = 80
